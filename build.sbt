@@ -12,45 +12,45 @@ val CodegenTag = Tags.Tag("CodegenTag")
 (concurrentRestrictions in Global) += Tags.exclusive(CodegenTag)
 
 lazy val baseModules = Seq[sbt.ClasspathDep[sbt.ProjectReference]](
-  `quill-core-portable-jvm`, `quill-core-portable-js`,
-  `quill-core-jvm`, `quill-core-js`,
-  `quill-sql-portable-jvm`, `quill-sql-portable-js`,
-  `quill-sql-jvm`, `quill-sql-js`, `quill-monix`
+  `quill-core-portable-jvm`,// `quill-core-portable-js`,
+  `quill-core-jvm`, //`quill-core-js`,
+  `quill-sql-portable-jvm`, //`quill-sql-portable-js`,
+  `quill-sql-jvm`, //`quill-sql-js`, `quill-monix`
 )
 
 lazy val dbModules = Seq[sbt.ClasspathDep[sbt.ProjectReference]](
-  `quill-jdbc`, `quill-jdbc-monix`
+//  `quill-jdbc`, `quill-jdbc-monix`
 )
 
 lazy val jasyncModules = Seq[sbt.ClasspathDep[sbt.ProjectReference]](
-  `quill-jasync`, `quill-jasync-postgres`
+//  `quill-jasync`, `quill-jasync-postgres`
 )
 
 lazy val asyncModules = Seq[sbt.ClasspathDep[sbt.ProjectReference]](
-  `quill-async`, `quill-async-mysql`, `quill-async-postgres`,
-  `quill-finagle-mysql`, `quill-finagle-postgres`,
-  `quill-ndbc`, `quill-ndbc-postgres`
+//  `quill-async`, `quill-async-mysql`, `quill-async-postgres`,
+  `quill-finagle-mysql`, //`quill-finagle-postgres`,
+//  `quill-ndbc`, `quill-ndbc-postgres`
 ) ++ jasyncModules
 
 lazy val codegenModules = Seq[sbt.ClasspathDep[sbt.ProjectReference]](
-  `quill-codegen`, `quill-codegen-jdbc`, `quill-codegen-tests`
+//  `quill-codegen`, `quill-codegen-jdbc`, `quill-codegen-tests`
 )
 
 lazy val bigdataModules = Seq[sbt.ClasspathDep[sbt.ProjectReference]](
-  `quill-cassandra`, `quill-cassandra-lagom`, `quill-cassandra-monix`, `quill-orientdb`, `quill-spark`
+//  `quill-cassandra`, `quill-cassandra-lagom`, `quill-cassandra-monix`, `quill-orientdb`, `quill-spark`
 )
 
 lazy val allModules =
   baseModules ++ dbModules ++ asyncModules ++ codegenModules ++ bigdataModules
 
 lazy val scala213Modules = baseModules ++ dbModules ++ Seq[sbt.ClasspathDep[sbt.ProjectReference]](
-  `quill-async`,
-  `quill-async-mysql`,
-  `quill-async-postgres`,
+//  `quill-async`,
+//  `quill-async-mysql`,
+//  `quill-async-postgres`,
   `quill-finagle-mysql`,
-  `quill-cassandra`,
-  `quill-cassandra-monix`,
-  `quill-orientdb`,
+//  `quill-cassandra`,
+//  `quill-cassandra-monix`,
+//  `quill-orientdb`,
 )
 
 def isScala213 = {
@@ -644,14 +644,14 @@ def excludePathsIfOracle(paths:Seq[String]) = {
   })
 }
 
-val crossVersions = {
-  val scalaVersion = sys.props.get("quill.scala.version")
-  if(scalaVersion.map(_.startsWith("2.13")).getOrElse(false)) {
-    Seq("2.11.12", "2.12.10", "2.13.1")
-  } else {
-    Seq("2.11.12", "2.12.10")
-  }
-}
+//val crossVersions = {
+//  val scalaVersion = sys.props.get("quill.scala.version")
+//  if(scalaVersion.map(_.startsWith("2.13")).getOrElse(false)) {
+//    Seq("2.11.12", "2.12.10", "2.13.1")
+//  } else {
+//    Seq("2.11.12", "2.12.10")
+//  }
+//}
 
 lazy val basicSettings = Seq(
   excludeFilter in unmanagedSources := {
@@ -661,8 +661,8 @@ lazy val basicSettings = Seq(
     }
   },
   organization := "io.getquill",
-  scalaVersion := "2.11.12",
-  crossScalaVersions := Seq("2.11.12", "2.12.10", "2.13.1"),
+  scalaVersion := "2.13.1",
+//  crossScalaVersions := Seq("2.11.12", "2.12.10", "2.13.1"),
   libraryDependencies ++= Seq(
     "org.scala-lang.modules" %%% "scala-collection-compat" % "2.1.4",
     "com.lihaoyi"     %% "pprint"         % pprintVersion(scalaVersion.value),
