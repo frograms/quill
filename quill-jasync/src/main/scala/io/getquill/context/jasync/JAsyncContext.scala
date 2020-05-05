@@ -18,7 +18,7 @@ import io.getquill.util.ContextLogger
 import io.getquill.monad.ScalaFutureIOMonad
 import io.getquill.context.{ Context, TranslateContext }
 import kotlin.jvm.functions.Function1
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.compat.java8.FutureConverters
 
 abstract class JAsyncContext[D <: SqlIdiom, N <: NamingStrategy, C <: ConcreteConnection](val idiom: D, val naming: N, pool: ConnectionPool[C])

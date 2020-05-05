@@ -3,7 +3,7 @@ package io.getquill.context.jasync
 import java.nio.charset.Charset
 import java.lang.{ Long => JavaLong }
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.util.Try
 
 import com.github.jasync.sql.db.ConcreteConnection
